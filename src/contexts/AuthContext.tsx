@@ -4,7 +4,7 @@ interface AuthContextValue {
   token?: string;
   isLoading: boolean;
   helpers: {
-    signIn: (token: string) => void;
+    signIn: (token?: string) => void;
     signOut: () => void;
   };
 }
@@ -28,7 +28,7 @@ const ProviderComponent: FC<AuthContextProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | undefined>();
   const [loading, setLoading] = useState<boolean>(true);
 
-  const signIn = useCallback((newToken: string) => {
+  const signIn = useCallback((newToken?: string) => {
     setToken(newToken);
     setLoading(false);
   }, []);
