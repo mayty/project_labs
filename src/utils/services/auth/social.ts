@@ -18,16 +18,16 @@ export const signInWithGoogle = async (onError?: OnErrorCallback) => {
   } catch (error) {
     if (error.code === GoogleStatusCode.SIGN_IN_CANCELLED) {
       // user cancelled the login flow
-      onError && onError(error);
+      onError?.(error);
     } else if (error.code === GoogleStatusCode.IN_PROGRESS) {
       // operation (e.g. sign in) is in progress already
-      onError && onError(error);
+      onError?.(error);
     } else if (error.code === GoogleStatusCode.PLAY_SERVICES_NOT_AVAILABLE) {
       // play services not available or outdated
-      onError && onError(error);
+      onError?.(error);
     } else {
       // some other error happened
-      onError && onError(error);
+      onError?.(error);
     }
   }
 };
