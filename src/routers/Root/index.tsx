@@ -1,22 +1,24 @@
 import React, { memo } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-// contexts
-import { useAuthContext } from 'contexts/AuthContext';
+// routers
+import AuthRouter from '@/routers/Auth';
 
-const RootStack = createStackNavigator();
+// utils
+import { ROOT_STACK } from '@/utils/constants/routes';
+
+// types
+import { RootStackParams } from '@/types/routes';
+
+const RootStack = createStackNavigator<RootStackParams>();
 
 const RootRouter = () => {
-  const { token, isLoading } = useAuthContext();
-
-  // TO-DO: return SplashScreen
-  if (isLoading) {
-    return null;
-  }
+  const routeName = ROOT_STACK.AUTH;
+  const routeComponent = AuthRouter;
 
   return (
-    <RootStack.Navigator>
-      <RootStack.Screen name="" />
+    <RootStack.Navigator headerMode="none">
+      <RootStack.Screen name={routeName} component={routeComponent} />
     </RootStack.Navigator>
   );
 };

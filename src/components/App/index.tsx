@@ -1,15 +1,18 @@
 import React, { memo } from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 // contexts
-import { AuthContextProvider } from 'contexts/AuthContext';
+import { AuthContextProvider } from '@/contexts/AuthContext';
 
 // routers
-import Router from 'routers';
+import Router from '@/routers';
 
 const App = () => {
   return (
     <AuthContextProvider>
-      <Router />
+      <SafeAreaProvider>
+        <Router />
+      </SafeAreaProvider>
     </AuthContextProvider>
   );
 };
